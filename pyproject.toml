@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcpcodex"
+version = "0.1.0"
+description = "Template for MCP server, tool, agent, and client using local Ollama."
+readme = "README.md"
+authors = [{name = "Your Name"}]
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.111",
+  "pydantic>=2.0",
+  "uvicorn>=0.29",
+  "requests>=2.31"
+]
+
+[project.optional-dependencies]
+dev = ["build"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
