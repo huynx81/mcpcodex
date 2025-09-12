@@ -23,3 +23,11 @@ class OllamaClient:
                 data = json.loads(line)
                 text += data.get("response", "")
         return text
+
+    def tts(self, text: str, **params: Any) -> bytes:
+        """Convert text to speech using the local model."""
+        payload: Dict[str, Any] = {"model": self.model, "prompt": text}
+        payload.update(params)
+        response = requests.post(f"{self.host}/api/tts", json=payload, timeout=60)
+        response.raise_for_status()
+        return response.content
