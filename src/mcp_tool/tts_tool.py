@@ -26,7 +26,8 @@ class TTSTool:
     def run(self, text: str) -> bytes:
         """Generate speech audio from the provided text."""
         if self.backend == "ollama":
-            assert self.client is not None
+            if self.client is None:
+                raise RuntimeError("Ollama backend is not configured")
             return self.client.tts(text)
         resp = requests.post(self.api_url, json={"text": text}, timeout=60)
         resp.raise_for_status()
